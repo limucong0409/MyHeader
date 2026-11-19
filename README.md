@@ -1,3 +1,3 @@
 # MyHeader
 
-Some useful classes packaged into Header Files.
+Something useful packaged into Header Files.
