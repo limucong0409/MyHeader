@@ -20,7 +20,7 @@ namespace MySTL
             ne=new int[y]{};
             val=new T[y]{};
         }
-        void pushback(int x,T y)
+        void push_back(int x,T y)
         {
             ne[++cnt]=he[x];
             he[x]=cnt;
@@ -35,9 +35,7 @@ namespace MySTL
             int idx;
         public:
             Iterator(const zip* z,int i):at(z),idx(i){}
-            T operator*() const {
-                return (idx?at->val[idx]:T());
-            }
+            T operator*()const{return (idx?at->val[idx]:T());}
             Iterator& operator++()
             {
                 if(idx){idx=at->ne[idx];}
@@ -63,7 +61,7 @@ namespace MySTL
             Range(zip* z,int x):at(z),hed(x){}
             Iterator begin()const{return Iterator(at,at->he[hed]);}
             Iterator end()const{return Iterator(at,0);}
-            void pushback(T x){at->pushback(hed,x);}
+            void push_back(T x){at->pushback(hed,x);}
             bool empty(){return at->empty(hed);}
             void clear(){return at->clear(hed);}
         };

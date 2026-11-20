@@ -1,12 +1,13 @@
 #include<cstdio>
 namespace MyMath
 {
-	const double PI=3.1415926535;
-	const double PI5=3.14159;
-	const double PI20=3.14159265358979323846;
-	const double PI30=3.141592653589793238462643383279;
-	const double PI40=3.1415926535897932384626433832795028841970;
-	
+	constexpr double PI=3.1415926535;
+	constexpr double PI5=3.14159;
+	constexpr double PI20=3.14159265358979323846;
+	constexpr double PI30=3.141592653589793238462643383279;
+	constexpr double PI40=3.1415926535897932384626433832795028841970;
+	constexpr double MOD=998224353;
+
 	template<typename T>
 	T swap(T& x,T& y){T z=x;x=y,y=z;} 
 	template<typename T>
@@ -34,7 +35,7 @@ namespace MyMath
 	double cos(T x,int y=10){return sin(x+PI/2,y);}
 	
 	template<typename Ta,typename Tb>
-	Ta quick_pow(Ta x,Tb y,Tb mod=INT_MAX)
+	Ta quick_pow(Ta x,Tb y,Tb mod=MOD)
 	{
 		Ta base=x,ans=1;
 		Tb time=1;

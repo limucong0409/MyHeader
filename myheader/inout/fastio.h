@@ -6,13 +6,13 @@ namespace FastIO {
         if (l == r) r = (l = buf) + fread(buf, 1, LEN, stdin);
         return l == r ? EOF : *l++;
     }
-    char obuf[LEN], *p = obuf;
+    char obuf[LEN], *obufp = obuf;
     inline void putchar(const char &c) {
-        if (p == obuf + LEN) fwrite(p = obuf, 1, LEN, stdout);
-        *p++ = c;
+        if (obufp == obuf + LEN) fwrite(obufp = obuf, 1, LEN, stdout);
+        *obufp++ = c;
     }
     inline void flush() {
-        fwrite(obuf, 1, p - obuf, stdout),p=obuf;
+        fwrite(obuf, 1, obufp - obuf, stdout),obufp=obuf;
     }
     struct Reader {
         template<typename T> inline Reader &operator >> (T &x) {
@@ -37,14 +37,16 @@ namespace FastIO {
             }
             return *this;
         }
-    } cin;
+    } fin;
     struct Keep{int len;};
     Keep keep(int l){return {l};}
+    struct FastEndlType{};
+    constexpr FastEndlType fast_endl;
     struct Writer {
         int keeplen=6;
         template<typename T> inline Writer &operator << (T x) {
             if (x < 0) putchar('-'), x = -x;
-            static unsigned char tp = 0, s[40];
+            static unsigned char tp = 0, s[0x40];
             do s[++tp] = x % 10 + '0', x /= 10; while (x);
             while (tp) putchar(s[tp--]);
             return *this;
@@ -76,14 +78,22 @@ namespace FastIO {
             len=snprintf(s, sizeof(s), "%.*f", keeplen, d);
             if(len>0&&len<0x180)
             {
-                if(p-obuf+len>=LEN)flush();
-                memcpy(p,s,len),p+=len;
+                if(obufp-obuf+len>=LEN)flush();
+                memcpy(obufp,s,len),obufp+=len;
             }
+            return *this;
+        }
+        inline Writer &operator << (FastEndlType) {
+            putchar('\n');
             return *this;
         }
 
         ~Writer() {
             flush();
         }
-    }cout;
+    }fout;
 }
+inline std::ostream& operator<<(std::ostream& os,FastIO::FastEndlType){return os << '\n' << std::flush;}
+#define endl FastIO::fast_endl
+#define cin fin
+#define cout fout
