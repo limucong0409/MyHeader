@@ -1,29 +1,18 @@
 #include"mylib/mylib_all.h"
 using namespace std;
 using namespace MyLib;
-#define N 102
-#define A 700005
-int n;
-int a[N];
-bitset<A> b;
-int maxa,ans;
+#define N 10004
+zip<int> z(N);
 int main()
 {
-    cin>>n;
-    for(int i=1;i<=n;i++)
-        cin>>a[i];
-    for(int i=1,ct;i<=n;i++)
+    z[1].push_back(1);
+    z[2].push_back(3);
+    z[1].push_back(5);
+    z[4].push_back(1);
+    z[1].push_back(2);
+    for(auto v:z[1])
     {
-        b.reset();
-        b[0]=1;
-        for(int j=1;j<=n;j++)
-        {
-            if(i==j)continue;
-            b._ior_shifted(a[j]);
-        }
-        ct=b.count();
-        if(ct>maxa)ans=i,maxa=ct;
+        cout<<v<<endl;
     }
-    cout<<ans;
     return 0;
 }

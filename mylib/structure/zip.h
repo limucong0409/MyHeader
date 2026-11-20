@@ -61,7 +61,7 @@ namespace MySTL
             Range(zip* z,int x):at(z),hed(x){}
             Iterator begin()const{return Iterator(at,at->he[hed]);}
             Iterator end()const{return Iterator(at,0);}
-            void push_back(T x){at->pushback(hed,x);}
+            void push_back(T x){at->push_back(hed,x);}
             bool empty(){return at->empty(hed);}
             void clear(){return at->clear(hed);}
         };

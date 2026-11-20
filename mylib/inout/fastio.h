@@ -95,5 +95,5 @@ namespace FastIO {
 }
 inline std::ostream& operator<<(std::ostream& os,FastIO::FastEndlType){return os << '\n' << std::flush;}
 #define endl FastIO::fast_endl
-#define cin fin
-#define cout fout
+#define cin FastIO::fin
+#define cout FastIO::fout
