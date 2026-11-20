@@ -1,4 +1,4 @@
-#include"myheader/mylib_all.h"
+#include"mylib/mylib_all.h"
 using namespace std;
 using namespace MyLib;
 #define N 102

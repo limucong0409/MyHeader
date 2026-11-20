@@ -1,3 +1,3 @@
-# MyHeader
+# MyLib
 
-Something useful packaged into Header Files.
+Something useful packaged into library Files.
